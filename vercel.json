@@ -1,12 +1,4 @@
 {
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "framework": "nextjs",
-  "installCommand": "npm install next@14",
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/app/api/$1"
-    }
-  ]
+  "name": "tiktok-landing",
+  "version": "1.0.0"
 }
