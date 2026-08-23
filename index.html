@@ -3,243 +3,552 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>暮らしサポート相談窓口</title>
-<!-- TikTok Pixel Code Start -->
+
+<title>暮らしサポート無料相談</title>
+
+<!-- TikTok Pixel -->
 <script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;
-  var ttq=w[t]=w[t]||[];
-  ttq.methods=[
-    "page","track","identify","instances","debug",
-    "on","off","once","ready","alias","group",
-    "enableCookie","disableCookie","holdConsent",
-    "revokeConsent","grantConsent"
-  ];
-  ttq.setAndDefer=function(t,e){
-    t[e]=function(){
-      t.push([e].concat(Array.prototype.slice.call(arguments,0)))
-    }
-  };
-  for(var i=0;i<ttq.methods.length;i++){
-    ttq.setAndDefer(ttq,ttq.methods[i]);
-  }
-  ttq.instance=function(t){
-    for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++){
-      ttq.setAndDefer(e,ttq.methods[n]);
-    }
-    return e;
-  };
-  ttq.load=function(e,n){
-    var r="https://analytics.tiktok.com/i18n/pixel/events.js",
-    o=n&&n.partner;
-    ttq._i=ttq._i||{};
-    ttq._i[e]=[];
-    ttq._i[e]._u=r;
-    ttq._t=ttq._t||{};
-    ttq._t[e]=+new Date;
-    ttq._o=ttq._o||{};
-    ttq._o[e]=n||{};
-    n=document.createElement("script");
-    n.type="text/javascript";
-    n.async=!0;
-    n.src=r+"?sdkid="+e+"&lib="+t;
-    e=document.getElementsByTagName("script")[0];
-    e.parentNode.insertBefore(n,e);
-  };
-  ttq.load('DA5JII3C77UES973U2TG');
-  ttq.page();
-  // 页面浏览保留前端
-  ttq.track('ViewContent',{
-    content_id:'jp_support_landing',
-    content_name:'日本生活支援相談ページ',
-    content_type:'product'
-  });
-}(window, document, 'ttq');
+!function (w,d,t){
+w.TiktokAnalyticsObject=t;
+var ttq=w[t]=w[t]||[];
 
-// =====服务端上报函数=====
-async function sendServerContact(){
-  try{
-    await fetch("/api/tiktok",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        eventName:"Contact",
-        user_agent:navigator.userAgent
-      })
-    })
-  }catch(err){/*接口失败不阻断用户跳转*/}
+ttq.methods=[
+"page","track","identify","instances",
+"debug","on","off","once",
+"ready","alias","group",
+"enableCookie","disableCookie"
+];
+
+ttq.setAndDefer=function(t,e){
+t[e]=function(){
+t.push([e].concat(
+Array.prototype.slice.call(arguments,0)
+))
+}
+};
+
+for(var i=0;i<ttq.methods.length;i++){
+ttq.setAndDefer(ttq,ttq.methods[i]);
 }
 
-async function sendServerLead(){
-  try{
-    await fetch("/api/tiktok",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        eventName:"Lead",
-        user_agent:navigator.userAgent
-      })
-    })
-  }catch(err){/*接口失败不阻断用户跳转*/}
-}
+ttq.load=function(e){
+var s=d.createElement("script");
+s.async=true;
+s.src=
+"https://analytics.tiktok.com/i18n/pixel/events.js?sdkid="
++e+"&lib="+t;
+
+var x=d.getElementsByTagName("script")[0];
+x.parentNode.insertBefore(s,x);
+};
+
+ttq.load("DA5JII3C77UES973U2TG");
+
+ttq.page();
+
+
+/* 页面访问 */
+ttq.track("ViewContent",{
+
+content_id:"jp_support_page",
+
+content_name:"暮らしサポート相談",
+
+content_type:"product"
+
+});
+
+
+}(window,document,"ttq");
 </script>
-<!-- TikTok Pixel Code End -->
+
+
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+}
+
+
 body{
+
 margin:0;
-font-family:"Noto Sans JP",Arial,sans-serif;
+
+font-family:
+"Noto Sans JP",
+Arial,
+sans-serif;
+
 background:#f7f7f7;
+
 color:#333;
+
 }
+
+
 .header{
+
 background:#fff;
-padding:18px 5%;
+
+padding:18px;
+
 font-size:20px;
+
 font-weight:bold;
-color:#b71c1c;
-border-bottom:1px solid #eee;
-}
-.hero{
-padding:70px 6%;
-min-height:580px;
-color:white;
-background:
-linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
-url("https://images.unsplash.com/photo-1528360983277-13d401cdc186")
-center/cover;
-}
-.hero h1{
-font-size:38px;
-line-height:1.5;
-}
-.hero p{
-font-size:18px;
-line-height:1.8;
-}
-.line-btn{
-display:inline-block;
-background:#06c755;
-color:#fff;
-padding:16px 40px;
-border-radius:50px;
-text-decoration:none;
-font-weight:bold;
-margin-top:25px;
-}
-.section{
-padding:45px 6%;
-}
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-.card,.form-box{
-background:#fff;
-padding:25px;
-border-radius:16px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-.icon{
-font-size:35px;
-}
-.card h3{
-color:#b71c1c;
-}
-input,select{
-width:100%;
-padding:14px;
-margin-top:12px;
-border:1px solid #ddd;
-border-radius:8px;
-}
-.submit{
-display:block;
-background:#06c755;
-color:white;
-padding:15px;
-border-radius:40px;
+
+color:#c62828;
+
 text-align:center;
+
+}
+
+
+
+.hero{
+
+padding:60px 20px;
+
+color:white;
+
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.45)
+),
+url("https://images.unsplash.com/photo-1528360983277-13d401cdc186");
+
+background-size:cover;
+
+background-position:center;
+
+text-align:center;
+
+}
+
+
+.hero h1{
+
+font-size:32px;
+
+line-height:1.6;
+
+}
+
+
+.hero p{
+
+font-size:17px;
+
+line-height:1.8;
+
+}
+
+
+
+.btn{
+
+display:block;
+
+max-width:360px;
+
+margin:25px auto;
+
+padding:16px;
+
+border-radius:50px;
+
 text-decoration:none;
-margin-top:20px;
+
 font-weight:bold;
+
+text-align:center;
+
+font-size:18px;
+
 }
-@media(max-width:600px){
-.hero h1{font-size:30px}
+
+
+
+.line{
+
+background:#06c755;
+
+color:#fff;
+
 }
+
+
+
+.section{
+
+padding:40px 20px;
+
+}
+
+
+
+.card{
+
+background:white;
+
+padding:25px;
+
+margin-bottom:15px;
+
+border-radius:15px;
+
+box-shadow:
+0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+.card h3{
+
+color:#c62828;
+
+}
+
+
+
+.form{
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+}
+
+
+input,select{
+
+width:100%;
+
+padding:14px;
+
+margin-top:12px;
+
+border-radius:8px;
+
+border:1px solid #ddd;
+
+}
+
+
+
+.footer{
+
+background:white;
+
+padding:40px 20px;
+
+text-align:center;
+
+}
+
+
+
+.small{
+
+font-size:13px;
+
+color:#777;
+
+}
+
+
+
 </style>
+
 </head>
+
+
 <body>
+
+
 <div class="header">
+
 暮らしサポート相談窓口
+
 </div>
+
+
+
 <section class="hero">
+
+
 <h1>
-あなたが利用できる<br>
-暮らしの支援制度をチェック
+
+あなたに合った<br>
+
+生活支援情報を無料で確認
+
 </h1>
+
+
 <p>
-生活・住まい・子育てに関する<br>
-支援情報を無料でご案内します
+
+住宅・生活・子育てなど<br>
+
+暮らしに役立つ情報をご案内します
+
 </p>
-<a class="line-btn"
+
+
+
+<a class="btn line"
 href="https://lihi1.me/7Oqt3"
-onclick="sendServerContact()">
+onclick="sendLead(event)">
+
 💬 LINEで無料相談する
+
 </a>
+
+
 </section>
+
+
+
 <section class="section">
-<h2>ご案内できる支援情報</h2>
-<div class="cards">
+
+
+<h2>
+
+ご案内できる情報
+
+</h2>
+
+
 <div class="card">
-<div class="icon">🏠</div>
-<h3>住まいに関する情報</h3>
-<p>住宅や暮らしに関する支援情報をご案内します。</p>
+
+<h3>🏠 住まいサポート</h3>
+
+<p>
+住宅や生活環境に関する情報をご案内します。
+</p>
+
 </div>
+
+
+
 <div class="card">
-<div class="icon">👨‍👩‍👧</div>
-<h3>子育て支援情報</h3>
-<p>子育て家庭向けの制度情報をご確認いただけます。</p>
+
+<h3>👨‍👩‍👧 家庭向け支援</h3>
+
+<p>
+生活に関する各種情報を確認できます。
+</p>
+
 </div>
+
+
+
 <div class="card">
-<div class="icon">📄</div>
-<h3>生活支援制度</h3>
-<p>暮らしに役立つ情報をご案内します。</p>
+
+<h3>📄 制度相談</h3>
+
+<p>
+あなたの状況に合わせた相談窓口をご案内します。
+</p>
+
 </div>
-</div>
+
+
+
 </section>
+
+
+
+
 <section class="section">
-<div class="form-box">
-<h2>簡単無料相談フォーム</h2>
+
+
+<div class="form">
+
+
+<h2>
+無料相談受付
+</h2>
+
+
 <input placeholder="お名前">
+
+
 <select>
-<option>年齢を選択してください</option>
-<option>20代</option>
-<option>30代</option>
-<option>40代</option>
-<option>50代以上</option>
+
+<option>
+年代を選択してください
+</option>
+
+<option>
+20代
+</option>
+
+<option>
+30代
+</option>
+
+<option>
+40代
+</option>
+
+<option>
+50代以上
+</option>
+
 </select>
+
+
 <select>
-<option>お住まいの地域</option>
-<option>東京都</option>
-<option>大阪府</option>
-<option>その他</option>
+
+<option>
+お住まいの地域
+</option>
+
+<option>
+東京都
+</option>
+
+<option>
+大阪府
+</option>
+
+<option>
+その他
+</option>
+
 </select>
-<a class="submit"
+
+
+
+<a class="btn line"
+
 href="https://lihi1.me/7Oqt3"
-onclick="sendServerLead()">
+
+onclick="sendLead(event)">
+
 無料相談を申し込む
+
 </a>
+
+
 </div>
+
+
 </section>
-<section class="section" style="text-align:center;background:#fff">
-<h2>LINEからお気軽にご相談ください</h2>
-<a class="line-btn"
+
+
+
+
+<div class="footer">
+
+
+<h2>
+
+LINEからお気軽にご相談ください
+
+</h2>
+
+
+<a class="btn line"
+
 href="https://lihi1.me/7Oqt3"
-onclick="sendServerContact()">
-LINE相談を開始
+
+onclick="sendLead(event)">
+
+LINE相談開始
+
 </a>
-</section>
+
+
+<p class="small">
+
+無料相談・情報案内窓口
+
+</p>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+async function sendLead(e){
+
+
+e.preventDefault();
+
+
+
+try{
+
+
+await fetch("/api/tiktok",{
+
+
+method:"POST",
+
+
+headers:{
+
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+eventName:"Lead",
+
+content_name:"LINE無料相談"
+
+}),
+
+
+keepalive:true
+
+
+});
+
+
+
+}catch(err){
+
+
+console.log(err);
+
+
+}
+
+
+
+// 等待事件发送后跳转
+
+setTimeout(()=>{
+
+
+window.location.href=
+"https://lihi1.me/7Oqt3";
+
+
+},300);
+
+
+
+}
+
+
+
+</script>
+
+
 </body>
+
 </html>
